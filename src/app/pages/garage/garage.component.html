@@ -5,12 +5,31 @@
     <p>Scanne ein Fahrzeug, um es hier zu speichern.</p>
   </div>
   <div *ngIf="cars.length > 0" class="car-list">
-    <div *ngFor="let car of cars" class="car-card">
+    <div *ngFor="let car of cars" class="car-card" (click)="toggleCard(car)">
       <div class="car-header">
         <h3>{{ car['hersteller'] }} {{ car['modell'] }}</h3>
-        <button (click)="deleteCar(car['id'])" class="delete-btn">Löschen</button>
       </div>
-      <div class="car-details">
+      <div class="rating-bars" *ngIf="!car.expanded">
+        <div class="rating-bar-container">
+          <p>Hubraum: {{ car['hubraum'] }}</p>
+          <div class="rating-bar">
+            <div class="rating-bar-fill" [style.width.%]="(car.hubraumNum / maxHubraum) * 100"></div>
+          </div>
+        </div>
+        <div class="rating-bar-container">
+          <p>Leistung: {{ car['leistung'] }}</p>
+          <div class="rating-bar">
+            <div class="rating-bar-fill" [style.width.%]="(car.leistungNum / maxLeistung) * 100"></div>
+          </div>
+        </div>
+        <div class="rating-bar-container">
+          <p>Wert: {{ car['wert_von'] }}</p>
+          <div class="rating-bar">
+            <div class="rating-bar-fill" [style.width.%]="(car.wertNum / maxWert) * 100"></div>
+          </div>
+        </div>
+      </div>
+      <div class="car-details" *ngIf="car.expanded">
         <p><strong>Baujahr:</strong> {{ car['baujahr'] }}</p>
         <p><strong>Hubraum:</strong> {{ car['hubraum'] }}</p>
         <p><strong>Leistung:</strong> {{ car['leistung'] }}</p>
