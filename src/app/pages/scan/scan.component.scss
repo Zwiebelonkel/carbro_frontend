@@ -1,43 +1,62 @@
 .scan {
-  display: block;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .upload {
   display: inline-block;
-  border: 2px dashed #ff7b00;
-  border-radius: 10px;
-  padding: 14px 16px;
+  border: 2px dashed var(--color-accent);
+  border-radius: 12px;
+  padding: 16px 22px;
   cursor: pointer;
+  transition: 0.3s ease;
   input {
     display: none;
   }
   span {
     font-weight: 600;
-    color: #ff7b00;
+    color: var(--color-accent);
+    text-shadow: 0 0 8px var(--color-accent-glow);
+  }
+
+  &:hover {
+    box-shadow: 0 0 16px var(--color-accent-glow);
   }
 }
 
 .loading {
-  margin-top: 16px;
-  color: #ff7b00;
+  color: var(--color-accent);
+  font-weight: 600;
 }
 
 .error {
-  margin-top: 16px;
-  color: #c62828;
+  color: #ff5555;
 }
 
 .result {
-  margin-top: 24px;
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 15px #000 inset;
+
   table {
-    margin: 0 auto;
+    width: 100%;
     border-collapse: collapse;
     td {
-      border: 1px solid #333;
       padding: 8px 12px;
-      color: #eee;
-      background: #1c1c1c;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    td:first-child {
+      text-align: left;
+      color: #aaa;
+      width: 45%;
+    }
+    td:last-child {
+      text-align: right;
+      color: var(--color-accent);
+      font-weight: 600;
     }
   }
 }
