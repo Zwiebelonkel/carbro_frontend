@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ScanService {
-  private baseUrl = 'https://carbro-backend.onrender.com/api'; // ✅ Render-Link hier
+  private baseUrl = 'https://carbro.onrender.com/api'; // ✅ Render-Link hier
 
   constructor(private http: HttpClient) {}
 
