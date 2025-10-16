@@ -1,0 +1,19 @@
+<div class="scan">
+  <label class="upload">
+    <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+    <span>📷 Fahrzeugschein mit <b>CarBro</b> scannen</span>
+  </label>
+
+  <div *ngIf="loading" class="loading">⏳ Analysiere...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="data" class="result">
+    <h3>Erkannte Fahrzeugdaten</h3>
+    <table>
+      <tr *ngFor="let key of objectKeys(data)">
+        <td>{{ key }}</td>
+        <td>{{ data[key] }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

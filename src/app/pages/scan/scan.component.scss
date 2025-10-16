@@ -1,0 +1,43 @@
+.scan {
+  display: block;
+  text-align: center;
+}
+
+.upload {
+  display: inline-block;
+  border: 2px dashed #ff7b00;
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  input {
+    display: none;
+  }
+  span {
+    font-weight: 600;
+    color: #ff7b00;
+  }
+}
+
+.loading {
+  margin-top: 16px;
+  color: #ff7b00;
+}
+
+.error {
+  margin-top: 16px;
+  color: #c62828;
+}
+
+.result {
+  margin-top: 24px;
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    td {
+      border: 1px solid #333;
+      padding: 8px 12px;
+      color: #eee;
+      background: #1c1c1c;
+    }
+  }
+}

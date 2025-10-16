@@ -1,0 +1,23 @@
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  margin-bottom: 1.5rem;
+  h1 {
+    color: #ff7b00;
+    margin: 0;
+  }
+  p {
+    color: #aaa;
+  }
+}
+
+footer {
+  margin-top: 2rem;
+  color: #777;
+}
