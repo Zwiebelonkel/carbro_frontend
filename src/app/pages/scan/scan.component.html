@@ -4,6 +4,13 @@
     <span>📷 Fahrzeugschein mit <b>CarBro</b> scannen</span>
   </label>
 
+  <div class="or-divider">oder</div>
+
+  <div class="hsn-input">
+    <input type="text" [(ngModel)]="hsn" placeholder="HSN eingeben" />
+    <button (click)="onHsnSubmit()">Suchen</button>
+  </div>
+
   <div *ngIf="loading" class="loading">⏳ Analysiere...</div>
   <div *ngIf="error" class="error">{{ error }}</div>
 

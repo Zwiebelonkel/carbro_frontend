@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-scan',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   templateUrl: './scan.component.html',
   styleUrls: ['./scan.component.scss'],
 })
@@ -13,6 +14,7 @@ export class ScanComponent {
   loading = false;
   error = '';
   data: any = null;
+  hsn = '';
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +23,7 @@ export class ScanComponent {
     const file = input.files?.[0];
     if (!file) return;
 
+    this.hsn = '';
     this.loading = true;
     this.error = '';
     this.data = null;
@@ -38,6 +41,28 @@ export class ScanComponent {
         error: (err) => {
           console.error(err);
           this.error = 'Fehler bei der Analyse';
+          this.loading = false;
+        },
+      });
+  }
+
+  onHsnSubmit() {
+    if (!this.hsn) return;
+
+    this.loading = true;
+    this.error = '';
+    this.data = null;
+
+    this.http
+      .post(`https://carbro-backend.onrender.com/api/hsn`, { hsn: this.hsn })
+      .subscribe({
+        next: (res) => {
+          this.data = res;
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error(err);
+          this.error = 'Fehler bei der HSN-Suche';
           this.loading = false;
         },
       });
