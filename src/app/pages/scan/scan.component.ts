@@ -31,19 +31,17 @@ export class ScanComponent {
     const formData = new FormData();
     formData.append('file', file);
 
-    this.http
-      .post('https://carbro-backend.onrender.com/api/scan', formData)
-      .subscribe({
-        next: (res) => {
-          this.data = res;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error(err);
-          this.error = 'Fehler bei der Analyse';
-          this.loading = false;
-        },
-      });
+    this.http.post('https://carbro.onrender.com/api/scan', formData).subscribe({
+      next: (res) => {
+        this.data = res;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.error = 'Fehler bei der Analyse';
+        this.loading = false;
+      },
+    });
   }
 
   onHsnSubmit() {
@@ -54,7 +52,7 @@ export class ScanComponent {
     this.data = null;
 
     this.http
-      .post(`https://carbro-backend.onrender.com/api/hsn`, { hsn: this.hsn })
+      .post(`https://carbro.onrender.com/api/hsn`, { hsn: this.hsn })
       .subscribe({
         next: (res) => {
           this.data = res;
