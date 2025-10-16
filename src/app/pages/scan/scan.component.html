@@ -22,5 +22,6 @@
         <td>{{ data[key] }}</td>
       </tr>
     </table>
+    <button *ngIf="isLoggedIn$ | async" (click)="addToGarage()" class="add-to-garage-btn">Zur Garage hinzufügen</button>
   </div>
 </div>

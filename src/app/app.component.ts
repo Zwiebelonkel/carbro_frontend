@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { ScanComponent } from './pages/scan/scan.component';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule, ScanComponent],
+  imports: [RouterModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

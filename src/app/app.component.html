@@ -1,14 +1,9 @@
-<div class="wrap">
-  <header>
-    <h1>🚗 CarBro</h1>
-    <p>Dein smarter Fahrzeugassistent</p>
-  </header>
+<app-header></app-header>
 
-  <main>
-    <app-scan></app-scan>
-  </main>
+<main>
+  <router-outlet></router-outlet>
+</main>
 
-  <footer>
-    <small>© {{ currentYear }} CarBro</small>
-  </footer>
-</div>
+<footer>
+  <small>© {{ currentYear }} CarBro</small>
+</footer>

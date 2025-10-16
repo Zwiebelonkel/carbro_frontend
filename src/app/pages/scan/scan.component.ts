@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { GarageService } from '../../services/garage.service';
+import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-scan',
@@ -15,8 +18,12 @@ export class ScanComponent {
   error = '';
   data: any = null;
   hsn = '';
+  isLoggedIn$!: Observable<boolean>;
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient, private garageService: GarageService, private authService: AuthService) {
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -64,6 +71,20 @@ export class ScanComponent {
           this.loading = false;
         },
       });
+  }
+
+  addToGarage() {
+    if (!this.data) return;
+
+    this.garageService.addCar(this.data).subscribe({
+      next: (res) => {
+        alert('Fahrzeug zur Garage hinzugefügt!');
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Fehler beim Hinzufügen des Fahrzeugs zur Garage.');
+      }
+    });
   }
 
   objectKeys(obj: any): string[] {

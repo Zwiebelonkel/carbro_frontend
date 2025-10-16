@@ -1,23 +1,34 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginData = { username: '', password: '' };
-  registerData = { username: '', password: '' };
+  formData = { username: '', password: '' };
+  isLoginView = true;
 
   loading = false;
   message = '';
 
   constructor(private authService: AuthService) {}
 
+  toggleView() {
+    this.isLoginView = !this.isLoginView;
+    this.formData = { username: '', password: '' };
+    this.message = '';
+    this.loading = false;
+  }
+
   onLogin() {
     this.loading = true;
-    this.authService.login(this.loginData).subscribe({
+    this.authService.login(this.formData).subscribe({
       next: (res) => {
         this.loading = false;
         this.message = '✅ Erfolgreich eingeloggt';
@@ -33,7 +44,7 @@ export class LoginComponent {
 
   onRegister() {
     this.loading = true;
-    this.authService.register(this.registerData).subscribe({
+    this.authService.register(this.formData).subscribe({
       next: (res) => {
         this.loading = false;
         this.message = '✅ Registrierung erfolgreich';

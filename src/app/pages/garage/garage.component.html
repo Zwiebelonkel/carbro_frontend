@@ -1,0 +1,24 @@
+<div class="garage-container">
+  <h2>Meine Garage</h2>
+  <div *ngIf="cars.length === 0" class="empty-garage">
+    <p>Deine Garage ist noch leer.</p>
+    <p>Scanne ein Fahrzeug, um es hier zu speichern.</p>
+  </div>
+  <div *ngIf="cars.length > 0" class="car-list">
+    <div *ngFor="let car of cars" class="car-card">
+      <div class="car-header">
+        <h3>{{ car['hersteller'] }} {{ car['modell'] }}</h3>
+        <button (click)="deleteCar(car['id'])" class="delete-btn">Löschen</button>
+      </div>
+      <div class="car-details">
+        <p><strong>Baujahr:</strong> {{ car['baujahr'] }}</p>
+        <p><strong>Hubraum:</strong> {{ car['hubraum'] }}</p>
+        <p><strong>Leistung:</strong> {{ car['leistung'] }}</p>
+        <p><strong>Kraftstoff:</strong> {{ car['kraftstoff'] }}</p>
+        <p><strong>Motoröl:</strong> {{ car['motoröl_empfehlung'] }}</p>
+        <p><strong>Reifendruck:</strong> Vorne: {{ car['reifendruck_vorne'] }}, Hinten: {{ car['reifendruck_hinten'] }}</p>
+        <p><strong>Wert:</strong> {{ car['wert_von'] }} - {{ car['wert_bis'] }}</p>
+      </div>
+    </div>
+  </div>
+</div>

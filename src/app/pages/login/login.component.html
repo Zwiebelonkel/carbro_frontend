@@ -1,31 +1,35 @@
 <div class="login-page">
-  <div class="form-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onLogin()">
-      <div class="form-field">
-        <label for="login-username">username</label>
-        <input id="login-username" type="username" [(ngModel)]="loginData.username" name="login-username" required>
+    <div class="form-container">
+      <h2 *ngIf="isLoginView">Anmelden</h2>
+      <h2 *ngIf="!isLoginView">Registrieren</h2>
+  
+      <form (ngSubmit)="isLoginView ? onLogin() : onRegister()">
+        <div class="form-field">
+          <label for="username">Benutzername</label>
+          <input type="text" id="username" [(ngModel)]="formData.username" name="username" required>
+        </div>
+  
+        <div class="form-field">
+          <label for="password">Passwort</label>
+          <input type="password" id="password" [(ngModel)]="formData.password" name="password" required>
+        </div>
+  
+        <button type="submit" [disabled]="loading">
+          <span *ngIf="!loading && isLoginView">Anmelden</span>
+          <span *ngIf="!loading && !isLoginView">Registrieren</span>
+          <span *ngIf="loading">...</span>
+        </button>
+      </form>
+  
+      <div class="message">
+        {{ message }}
       </div>
-      <div class="form-field">
-        <label for="login-password">Password</label>
-        <input id="login-password" type="password" [(ngModel)]="loginData.password" name="login-password" required>
+  
+      <div class="toggle-view">
+        <a (click)="toggleView()">
+          <span *ngIf="isLoginView">Noch kein Konto? Registrieren</span>
+          <span *ngIf="!isLoginView">Bereits ein Konto? Anmelden</span>
+        </a>
       </div>
-      <button type="submit">Login</button>
-    </form>
+    </div>
   </div>
-
-  <div class="form-container">
-    <h2>Register</h2>
-    <form (ngSubmit)="onRegister()">
-      <div class="form-field">
-        <label for="register-username">username</label>
-        <input id="register-username" type="username" [(ngModel)]="registerData.username" name="register-username" required>
-      </div>
-      <div class="form-field">
-        <label for="register-password">Password</label>
-        <input id="register-password" type="password" [(ngModel)]="registerData.password" name="register-password" required>
-      </div>
-      <button type="submit">Register</button>
-    </form>
-  </div>
-</div>

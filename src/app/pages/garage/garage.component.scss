@@ -1,0 +1,64 @@
+.garage-container {
+  padding: 2rem;
+  margin-top: 120px;
+}
+
+h2 {
+  color: var(--color-accent);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.empty-garage {
+  text-align: center;
+  color: #888;
+}
+
+.car-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.car-card {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-surface);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.car-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h3 {
+    color: var(--color-accent);
+    margin: 0;
+  }
+
+  .delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background: #cc0000;
+    }
+  }
+}
+
+.car-details {
+  p {
+    margin: 0.5rem 0;
+    color: #ccc;
+
+    strong {
+      color: #888;
+    }
+  }
+}

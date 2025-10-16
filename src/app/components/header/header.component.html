@@ -1,0 +1,14 @@
+<header>
+  <div class="logo">
+    <a routerLink="/">CAR BRO</a>
+  </div>
+  <nav>
+    <ng-container *ngIf="(isLoggedIn$ | async); else loggedOut">
+      <a routerLink="/garage" class="nav-btn">Garage</a>
+      <button (click)="logout()" class="nav-btn">Logout</button>
+    </ng-container>
+    <ng-template #loggedOut>
+      <a routerLink="/login" class="nav-btn">Login</a>
+    </ng-template>
+  </nav>
+</header>
