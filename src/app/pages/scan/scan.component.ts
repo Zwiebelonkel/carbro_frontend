@@ -75,17 +75,30 @@ export class ScanComponent {
 
   addToGarage() {
     if (!this.data) return;
-
-    this.garageService.addCar(this.data).subscribe({
-      next: (res) => {
-        alert('Fahrzeug zur Garage hinzugefügt!');
-      },
+  
+    const car = {
+      hersteller: this.data.Hersteller ?? this.data.hersteller ?? null,
+      modell: this.data.Modell ?? this.data.modell ?? null,
+      baujahr: this.data.Baujahr ?? this.data.baujahr ?? null,
+      hubraum: this.data.Hubraum ?? this.data.hubraum ?? null,
+      leistung: this.data.Leistung ?? this.data.leistung ?? null,
+      kraftstoff: this.data.Kraftstoff ?? this.data.kraftstoff ?? null,
+      motoröl_empfehlung: this.data.Motoröl_Empfehlung ?? this.data.motoröl_empfehlung ?? null,
+      reifendruck_vorne: this.data.Reifendruck_vorne ?? this.data.reifendruck_vorne ?? null,
+      reifendruck_hinten: this.data.Reifendruck_hinten ?? this.data.reifendruck_hinten ?? null,
+      wert_von: this.data.Wert_von ?? this.data.wert_von ?? null,
+      wert_bis: this.data.Wert_bis ?? this.data.wert_bis ?? null,
+    };
+  
+    this.garageService.addCar(car).subscribe({
+      next: () => alert('Fahrzeug zur Garage hinzugefügt!'),
       error: (err) => {
         console.error(err);
         alert('Fehler beim Hinzufügen des Fahrzeugs zur Garage.');
       }
     });
   }
+  
 
   objectKeys(obj: any): string[] {
     return Object.keys(obj || {});
