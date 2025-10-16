@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
-import { ScanService } from '../../services/scan.service';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-scan',
+  standalone: true,
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './scan.component.html',
   styleUrls: ['./scan.component.scss'],
 })
 export class ScanComponent {
   loading = false;
-  data: any = null;
   error = '';
+  data: any = null;
 
-  constructor(private scanService: ScanService) {}
+  constructor(private http: HttpClient) {}
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -22,16 +25,22 @@ export class ScanComponent {
     this.error = '';
     this.data = null;
 
-    this.scanService.scan(file).subscribe({
-      next: (res) => {
-        this.data = res;
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = 'Fehler bei der Analyse';
-        this.loading = false;
-      },
-    });
+    const formData = new FormData();
+    formData.append('file', file);
+
+    this.http
+      .post('https://carbro-backend.onrender.com/api/scan', formData)
+      .subscribe({
+        next: (res) => {
+          this.data = res;
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error(err);
+          this.error = 'Fehler bei der Analyse';
+          this.loading = false;
+        },
+      });
   }
 
   objectKeys(obj: any): string[] {
